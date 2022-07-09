@@ -7,6 +7,9 @@ synapse_component_opaque_handle_declare
 synapse_component_opaque_handle_declare
 	(synapse_component);
 
+synapse_component_opaque_handle_declare
+	(synapse_component_meta_object);
+
 typedef struct 
 	synapse_component_metadata
 {
@@ -14,8 +17,8 @@ typedef struct
 		component_name;
 	size_t
 		component_name_length;
-	void*
-		component_type; // Struct / Class Mapping Information for Component Interface.
+	synapse_component_meta_object
+		component_meta_object; // Struct / Class Mapping Information for Component Interface.
 } synapse_component_metadata;
 
 typedef struct

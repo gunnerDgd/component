@@ -12,13 +12,13 @@ void*
 				->prb_component->comp_interface;
 }
 
-void*
-	synapse_component_retrieve_type
+synapse_component_meta_object
+	synapse_component_retrieve_meta_object
 		(synapse_component pComponent)
 {
 	return
 		synapse_component_opaque_handle_cast
 			(pComponent, __synapse_component_probe_component*)
 				->prb_component->comp_interface
-					->if_metadata.component_type;
+					->if_metadata.component_meta_object;
 }

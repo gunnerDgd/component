@@ -54,7 +54,7 @@ __synapse_component_probe_component*
 	__synapse_component_probe_component*
 		ptr_component;
 
-	if(!__synapse_component_probe_retrieve_component
+	if(__synapse_component_probe_retrieve_component
 			(pProbe, pComponentName))
 				return NULL;
 

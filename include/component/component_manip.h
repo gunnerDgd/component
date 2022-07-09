@@ -5,6 +5,6 @@ void*
 	synapse_component_retrieve_object
 		(synapse_component);
 
-void*
-	synapse_component_retrieve_type
+synapse_component_meta_object
+	synapse_component_retrieve_meta_object
 		(synapse_component);

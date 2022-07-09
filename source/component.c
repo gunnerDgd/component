@@ -5,6 +5,7 @@
 
 #include <component/probe/probe_init.h>
 #include <component/probe/probe_manip.h>
+#include <component/meta_object/meta_object.h>
 
 #include <memory/mman/standard_heap/stdheap.h>
 
@@ -117,11 +118,49 @@ synapse_component_dll
 }
 
 synapse_component_dll
-	void*
-		synapse_component_type
+	synapse_component_meta_object
+		synapse_meta_object_from_component
 			(synapse_component pComponent)
 {
 	return
-		synapse_component_retrieve_type
+		synapse_component_retrieve_meta_object
 			(pComponent);
+}
+
+synapse_component_dll
+	synapse_component_meta_object
+		synapse_create_meta_object
+			()
+{
+	return
+		synapse_component_meta_object_initialize
+			();
+}
+
+synapse_component_dll
+	void
+		synapse_delete_meta_object
+			(synapse_component_meta_object pMeta)
+{
+	synapse_component_meta_object_cleanup
+		(pMeta);
+}
+
+synapse_component_dll
+	void
+		synapse_export_attribute_to_meta_object
+			(synapse_component_meta_object pMeta, const char* pName, void* pAttr)
+{
+	synapse_component_meta_export_attribute
+		(pMeta, pName, pAttr);
+}
+
+synapse_component_dll
+	void*
+		synapse_import_attribute_from_meta_object
+			(synapse_component_meta_object pMeta, const char* pName)
+{
+	return
+		synapse_component_meta_import_attribute
+			(pMeta, pName);
 }
