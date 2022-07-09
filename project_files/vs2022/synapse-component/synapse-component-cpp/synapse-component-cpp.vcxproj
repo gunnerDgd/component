@@ -19,8 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\include\component\component.hpp" />
+    <ClInclude Include="..\..\..\..\include\component\attribute.hpp" />
+    <ClInclude Include="..\..\..\..\include\component\prototype.hpp" />
     <ClInclude Include="..\..\..\..\include\component\exception.hpp" />
+    <ClInclude Include="..\..\..\..\include\component\meta_object.hpp" />
+    <ClInclude Include="..\..\..\..\source\component.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\source\meta_object.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
