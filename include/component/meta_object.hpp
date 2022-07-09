@@ -9,7 +9,7 @@ extern "C"
 namespace synapse::component {
 	class meta_object
 	{
-		template <typename T>
+		template <typename... T>
 			friend class prototype;
 		template <typename... T>
 			friend class component;

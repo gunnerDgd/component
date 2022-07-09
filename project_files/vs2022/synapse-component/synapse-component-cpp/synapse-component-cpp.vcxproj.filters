@@ -30,9 +30,15 @@
     <ClInclude Include="..\..\..\..\source\component.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\component\init.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\meta_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\..\source\init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

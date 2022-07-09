@@ -1,2 +1,4 @@
-﻿  meta_object.cpp
-  synapse-component-cpp.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-component\project_files\vs2022\synapse-component\x64\Debug\synapse-component-cpp.lib
+﻿  init.cpp
+  meta_object.cpp
+  Generating Code...
+  synapse-component-cpp.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\synapse-component-cpp.lib

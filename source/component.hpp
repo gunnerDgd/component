@@ -46,7 +46,9 @@ template <typename T, typename... U>
 						(pPrototype.__M_prototype_handle, pName, 1, 
 							&pPrototype.__M_prototype_metaobj))
 {
-	
+	if(!synapse_component_opaque_handle_reference
+			(__M_component_handle))
+				throw exception::component_creation_failed {};
 }
 
 template <typename T, typename... U>
@@ -55,6 +57,9 @@ template <typename T, typename... U>
 			: __M_component_handle
 					(synapse_retrieve_component(pName))
 {
+	if(!synapse_component_opaque_handle_reference
+			(__M_component_handle))
+				throw exception::component_not_found {};
 }
 
 template <typename T, typename... U>
