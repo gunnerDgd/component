@@ -1,5 +1,6 @@
 #pragma once
 #include <component/defines/handle/opaque_handle.h>
+#include <component/interface/attribute.h>
 
 synapse_component_opaque_handle_declare
 	(synapse_component_interface);
@@ -7,18 +8,13 @@ synapse_component_opaque_handle_declare
 synapse_component_opaque_handle_declare
 	(synapse_component);
 
-synapse_component_opaque_handle_declare
-	(synapse_component_meta_object);
-
 typedef struct 
 	synapse_component_metadata
 {
-	char*
+	const char*
 		component_name;
-	size_t
-		component_name_length;
-	synapse_component_meta_object
-		component_meta_object; // Struct / Class Mapping Information for Component Interface.
+	synapse_component_metadata_type*
+		component_type; // Struct / Class Mapping Information for Component Interface.
 } synapse_component_metadata;
 
 typedef struct

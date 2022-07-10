@@ -6,4 +6,4 @@
   probe_init.c
   probe_manip.c
   Generating Code...
-  synapse-component-probe.vcxproj -> E:\Programming\C++\Projects\Experimental\synapse-component\libs\x64\debug\synapse-component-probe.lib
+  synapse-component-probe.vcxproj -> E:\Programming\C++\Projects\synapse\libs\x64\debug\component\synapse-component-probe.lib

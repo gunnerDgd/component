@@ -1,2 +1,2 @@
-﻿     Creating library E:\Programming\C++\Projects\synapse\bin\x64\synapse-component-dll.lib and object E:\Programming\C++\Projects\synapse\bin\x64\synapse-component-dll.exp
-  synapse-component-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\synapse-component-dll.dll
+﻿  component.c
+  synapse-component-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.dll

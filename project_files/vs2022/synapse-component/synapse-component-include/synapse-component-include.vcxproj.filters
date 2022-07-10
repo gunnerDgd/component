@@ -30,5 +30,8 @@
     <ClInclude Include="..\..\..\..\include\component\defines\export\export.h">
       <Filter>Header Files\defines</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\include\component\interface\attribute.h">
+      <Filter>Header Files\interface</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,7 +15,7 @@ __synapse_component_probe_interface*
 	__synapse_component_probe_interface*
 		ptr_interface;
 
-	if(!__synapse_component_probe_retrieve_interface
+	if(__synapse_component_probe_retrieve_interface
 			(pProbe, pMetadata.component_name)) 
 				return NULL;
 

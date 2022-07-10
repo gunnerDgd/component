@@ -132,6 +132,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\component\defines\export\export.h" />
     <ClInclude Include="..\..\..\..\include\component\defines\handle\opaque_handle.h" />
+    <ClInclude Include="..\..\..\..\include\component\interface\attribute.h" />
     <ClInclude Include="..\..\..\..\include\component\interface\component.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

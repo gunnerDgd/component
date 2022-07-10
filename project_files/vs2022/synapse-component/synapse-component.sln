@@ -11,14 +11,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-component-probe", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-component-dll", "synapse-component-dll\synapse-component-dll.vcxproj", "{00138554-0F8D-408A-842F-053032145F66}"
 	ProjectSection(ProjectDependencies) = postProject
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47} = {1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}
 		{8F2EC4F1-8954-4B99-B4BF-51DE6E8107A5} = {8F2EC4F1-8954-4B99-B4BF-51DE6E8107A5}
 		{9AA16DE2-9333-4235-9DF0-03ECF5553FEB} = {9AA16DE2-9333-4235-9DF0-03ECF5553FEB}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-component-cpp", "synapse-component-cpp\synapse-component-cpp.vcxproj", "{594CEE8A-4E78-4332-8C43-93AD3A3CB7D3}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "synapse-component-meta", "synapse-component-meta\synapse-component-meta.vcxproj", "{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -68,14 +65,6 @@ Global
 		{594CEE8A-4E78-4332-8C43-93AD3A3CB7D3}.Release|x64.Build.0 = Release|x64
 		{594CEE8A-4E78-4332-8C43-93AD3A3CB7D3}.Release|x86.ActiveCfg = Release|Win32
 		{594CEE8A-4E78-4332-8C43-93AD3A3CB7D3}.Release|x86.Build.0 = Release|Win32
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Debug|x64.ActiveCfg = Debug|x64
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Debug|x64.Build.0 = Debug|x64
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Debug|x86.ActiveCfg = Debug|Win32
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Debug|x86.Build.0 = Debug|Win32
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Release|x64.ActiveCfg = Release|x64
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Release|x64.Build.0 = Release|x64
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Release|x86.ActiveCfg = Release|Win32
-		{1D21AE8A-45D6-4BDD-8EBE-571E4C563E47}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
