@@ -1,4 +1,4 @@
-#include <component/meta_object.hpp>
+#include <component/cpp/meta_object.hpp>
 
 synapse::component::meta_object::meta_object
 	(synapse_component_interface pInterface)
@@ -12,15 +12,6 @@ synapse::component::meta_object::meta_object
 	__M_metaobj_attribute
 			= *synapse_retrieve_type
 						(__M_metaobj_handle);
-}
-
-synapse::component::meta_object
-	synapse::component::meta_object::import_from
-		(name_type pName)
-{
-	return
-		meta_object
-			(synapse_import_interface(pName));
 }
 
 synapse::component::meta_object::attribute_helper
@@ -39,3 +30,7 @@ synapse::component::meta_object::attribute_helper
 	throw
 		exception::attribute_not_found {};
 }
+
+synapse::component::meta_object::attribute_helper::attribute_helper
+	(synapse_component_metadata_attribute* pAttribute)
+		: __hlp_attribute(pAttribute) {}

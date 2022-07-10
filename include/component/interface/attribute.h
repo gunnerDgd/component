@@ -19,4 +19,6 @@ typedef struct
 		  type_attribute_count;
 	synapse_component_metadata_attribute
 		* type_attribute;
+	void
+		* type_additional;
 } synapse_component_metadata_type;

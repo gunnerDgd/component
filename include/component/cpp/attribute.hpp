@@ -3,7 +3,7 @@
 #include <type_traits>
 
 #include <typeinfo>
-#include <component/exception.hpp>
+#include <component/cpp/exception.hpp>
 #include <component/interface/attribute.h>
 
 namespace synapse::component {
@@ -32,20 +32,19 @@ namespace synapse::component {
 
 		attribute
 			(name_type pName, value_type pValue)
-				{
-					static value_type
-								attr_static = pValue;
+		{
+			static value_type
+					attr_static = pValue;
 
-					attribute_field.attr_name
-							= pName;
-					attribute_field.attr_ptr
-							= &attr_static;
-					attribute_field.attr_additional
-							= reinterpret_cast<void*>
-									(typeid(value_type).hash_code());
-				}
+			attribute_field.attr_name
+					= pName;
+			attribute_field.attr_ptr
+					= &attr_static;
+			attribute_field.attr_additional
+					= reinterpret_cast<void*>
+							(typeid(value_type).hash_code());
+		}
 
-		friend class meta_object;
 		native_attribute_type
 				attribute_field;
 	};

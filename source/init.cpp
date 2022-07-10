@@ -1,14 +1,14 @@
 #include <component/init.hpp>
 
 void
-	synapse::component::initialize()
+	synapse::component::bootstrap::initialize()
 {
 	synapse_component_initialize_system
 		();
 }
 
 void
-	synapse::component::cleanup()
+	synapse::component::bootstrap::cleanup()
 {
 	synapse_component_cleanup_system
 		();
