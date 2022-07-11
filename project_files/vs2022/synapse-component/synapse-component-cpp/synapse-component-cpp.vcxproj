@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\..\source\init.cpp" />
     <ClCompile Include="..\..\..\..\source\meta_object.cpp" />
+    <ClCompile Include="..\..\..\..\source\probe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\component\component.hpp" />
     <ClInclude Include="..\..\..\..\include\component\cpp\attribute.hpp" />
     <ClInclude Include="..\..\..\..\include\component\cpp\component.hpp" />
     <ClInclude Include="..\..\..\..\include\component\cpp\exception.hpp" />
+    <ClInclude Include="..\..\..\..\include\component\cpp\expected.hpp" />
     <ClInclude Include="..\..\..\..\include\component\cpp\meta_object.hpp" />
     <ClInclude Include="..\..\..\..\include\component\cpp\probe.hpp" />
     <ClInclude Include="..\..\..\..\include\component\init.hpp" />

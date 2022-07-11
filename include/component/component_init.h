@@ -2,7 +2,6 @@
 #include <component/interface/component.h>
 #include <component/probe/probe_type.h>
 
-#include <memory/mman/mman_traits.h>
 
 synapse_component_interface
 	synapse_component_interface_initialize

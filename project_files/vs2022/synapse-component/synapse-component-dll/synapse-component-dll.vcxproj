@@ -77,7 +77,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-memory\include;E:\Programming\C++\Projects\Experimental\synapse-structure\include;E:\Programming\C++\Projects\Experimental\synapse-component\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Programming\C++\Projects\synapse\include;E:\Programming\C++\Projects\Experimental\synapse-structure\include;E:\Programming\C++\Projects\Experimental\synapse-component\include;$(IncludePath)</IncludePath>
     <LibraryPath>E:\Programming\C++\Projects\synapse\libs\x64\debug\component;E:\Programming\C++\Projects\Experimental\synapse-structure\libs\x64\debug\lib-list;E:\Programming\C++\Projects\Experimental\synapse-memory\libs\x64\debug;$(LibraryPath)</LibraryPath>
     <OutDir>E:\Programming\C++\Projects\synapse\bin\x64\debug\</OutDir>
   </PropertyGroup>
@@ -128,7 +128,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>synapse-structure-dlist.lib;synapse-memory-mman.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\component\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>synapse-structure-dlist.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\component\*.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\memory\synapse-memory-mman-dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

@@ -6,15 +6,13 @@
 #include <component/probe/probe_init.h>
 #include <component/probe/probe_manip.h>
 
-#include <memory/mman/standard_heap/stdheap.h>
+#include <synapse/memory/interface/memory_manager.h>
+#include <synapse/memory/standard_heap.h>
 
 #include <stdarg.h>
 
-static synapse_memory_mman_traits
-			*__synapse_component_mman_global,
-			*__synapse_component_mman_interface,
-			*__synapse_component_mman_component;
-
+static synapse_memory_manager
+			*__synapse_component_mman_probe;
 static synapse_component_probe
 			 __synapse_component_probe;
 
@@ -23,18 +21,11 @@ synapse_component_dll
 		synapse_component_initialize_system
 			()
 {
-	__synapse_component_mman_global
-		= synapse_memory_mman_stdheap_initialize_traits();
-	__synapse_component_mman_interface
-		= synapse_memory_mman_stdheap_initialize_traits();
-	__synapse_component_mman_component
-		= synapse_memory_mman_stdheap_initialize_traits();
-
+	__synapse_component_mman_probe
+		= synapse_initialize_standard_heap();
 	__synapse_component_probe
 		= synapse_component_probe_initialize
-				(__synapse_component_mman_global,
-				 __synapse_component_mman_component,
-				 __synapse_component_mman_global);
+				(__synapse_component_mman_probe);
 }
 
 synapse_component_dll
@@ -43,14 +34,9 @@ synapse_component_dll
 			()
 {
 	synapse_component_probe_cleanup
-		(__synapse_component_mman_global, __synapse_component_probe);
-	
-	synapse_memory_mman_stdheap_cleanup_traits
-		(__synapse_component_mman_component);
-	synapse_memory_mman_stdheap_cleanup_traits
-		(__synapse_component_mman_interface);
-	synapse_memory_mman_stdheap_cleanup_traits
-		(__synapse_component_mman_global);
+		(__synapse_component_probe);
+	synapse_cleanup_standard_heap
+		(__synapse_component_mman_probe);
 }
 
 synapse_component_dll

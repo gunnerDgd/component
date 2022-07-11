@@ -3,16 +3,16 @@
 
 __synapse_component_interface*
 	__synapse_component_interface_initialize
-		(synapse_memory_mman_traits*, synapse_component_metadata, synapse_component_traits);
+		(synapse_memory_manager*, synapse_component_metadata, synapse_component_traits);
 
 __synapse_component*
 	__synapse_component_initialize
-		(synapse_memory_mman_traits*, __synapse_component_interface*, va_list);
+		(synapse_memory_manager*, __synapse_component_interface*, va_list);
 
 void
 	__synapse_component_interface_cleanup
-		(synapse_memory_mman_traits*, __synapse_component_interface*);
+		(synapse_memory_manager*, __synapse_component_interface*);
 
 void
 	__synapse_component_cleanup
-		(synapse_memory_mman_traits*, __synapse_component*);
+		(synapse_memory_manager*, __synapse_component*);

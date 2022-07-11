@@ -1,11 +1,11 @@
 #pragma once
 #include <component/interface/component.h>
-#include <memory/mman/mman_traits.h>
+#include <synapse/memory/interface/memory_manager.h>
 
 typedef struct
 	__synapse_component_interface
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		if_alloc_block;
 
 	synapse_component_metadata
@@ -17,7 +17,7 @@ typedef struct
 typedef struct
 	__synapse_component
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		comp_alloc_block;
 
 	__synapse_component_interface*

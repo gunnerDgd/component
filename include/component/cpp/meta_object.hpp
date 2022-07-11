@@ -63,13 +63,15 @@ template
 		synapse::component::meta_object::meta_object
 			(Attribute&&... pAttribute)
 {
-	static attribute_set
-		<std::remove_reference_t<Attribute>...>
+	attribute_set
+		<std::remove_reference_t<Attribute>...>*
 			hnd_attribute
-				(pAttribute...);
+				= new attribute_set
+						<std::remove_reference_t<Attribute>...>
+							(pAttribute...);
 
 	__M_metaobj_attribute.type_attribute
-		= hnd_attribute.attributes;
+		= hnd_attribute->attributes;
 	__M_metaobj_attribute.type_attribute_count
 		= sizeof...(Attribute);
 }

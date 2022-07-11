@@ -80,7 +80,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Programming\C++\Projects\Experimental\synapse-memory\include;E:\Programming\C++\Projects\Experimental\synapse-component\include;$(IncludePath)</IncludePath>
+    <IncludePath>E:\Programming\C++\Projects\synapse\include;E:\Programming\C++\Projects\Experimental\synapse-component\include;$(IncludePath)</IncludePath>
     <OutDir>E:\Programming\C++\Projects\synapse\libs\x64\debug\component\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

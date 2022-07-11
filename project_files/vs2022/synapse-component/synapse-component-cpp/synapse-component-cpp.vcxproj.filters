@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\..\..\source\init.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\source\probe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\include\component\cpp\probe.hpp">
@@ -46,6 +49,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\..\include\component\init.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\include\component\cpp\expected.hpp">
+      <Filter>Header Files\cpp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

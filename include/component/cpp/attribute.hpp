@@ -33,13 +33,14 @@ namespace synapse::component {
 		attribute
 			(name_type pName, value_type pValue)
 		{
-			static value_type
-					attr_static = pValue;
+			value_type*
+					attr_static 
+						= new value_type(pValue);
 
 			attribute_field.attr_name
 					= pName;
 			attribute_field.attr_ptr
-					= &attr_static;
+					= attr_static;
 			attribute_field.attr_additional
 					= reinterpret_cast<void*>
 							(typeid(value_type).hash_code());

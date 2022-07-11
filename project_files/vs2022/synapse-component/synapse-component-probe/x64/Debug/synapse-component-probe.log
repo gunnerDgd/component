@@ -1,9 +1,4 @@
 ﻿  component_init.c
-  component_manip.c
-  details_probe_init.c
-  details_probe_manip.c
-  details_probe_reference.c
-  probe_init.c
   probe_manip.c
   Generating Code...
   synapse-component-probe.vcxproj -> E:\Programming\C++\Projects\synapse\libs\x64\debug\component\synapse-component-probe.lib

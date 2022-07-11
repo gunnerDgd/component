@@ -10,7 +10,7 @@ __synapse_component_probe_interface*
 		 synapse_component_metadata pMetadata, 
 		 synapse_component_traits   pTraits)
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		hnd_interface_mblock;
 	__synapse_component_probe_interface*
 		ptr_interface;
@@ -20,19 +20,19 @@ __synapse_component_probe_interface*
 				return NULL;
 
 	hnd_interface_mblock
-		= pProbe->prb_mman_interface->allocate
-				(pProbe->prb_mman_interface->hnd_mman,
+		= pProbe->prb_mman_probe->allocate
+				(pProbe->prb_mman_probe->hnd_mman,
 					NULL, sizeof(__synapse_component_probe_interface));
 
 	ptr_interface
-		= pProbe->prb_mman_interface->block_pointer
+		= pProbe->prb_mman_probe->block_pointer
 			(hnd_interface_mblock);
 	
 	ptr_interface->prb_interface_mblock
 		= hnd_interface_mblock;
 	ptr_interface->prb_interface
 		= __synapse_component_interface_initialize
-				(pProbe->prb_mman_interface, pMetadata, pTraits);
+				(pProbe->prb_mman_probe, pMetadata, pTraits);
 	ptr_interface->prb_interface_handle
 		= synapse_structure_double_linked_insert_back
 				(pProbe->prb_component_interface,
@@ -49,7 +49,7 @@ __synapse_component_probe_component*
 		 const char*						  pComponentName     ,
 		 va_list							  pArgument)
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		hnd_component_mblock;
 	__synapse_component_probe_component*
 		ptr_component;
@@ -59,19 +59,19 @@ __synapse_component_probe_component*
 				return NULL;
 
 	hnd_component_mblock
-		= pProbe->prb_mman_component->allocate
-			(pProbe->prb_mman_component->hnd_mman,
+		= pProbe->prb_mman_probe->allocate
+			(pProbe->prb_mman_probe->hnd_mman,
 				NULL, sizeof(__synapse_component_probe_component));
 
 	ptr_component
-		= pProbe->prb_mman_component->block_pointer
+		= pProbe->prb_mman_probe->block_pointer
 			(hnd_component_mblock);
 
 	ptr_component->prb_component_mblock
 		= hnd_component_mblock;
 	ptr_component->prb_component
 		= __synapse_component_initialize
-			(pProbe->prb_mman_component,
+			(pProbe->prb_mman_probe,
 				pComponentInterface->prb_interface, pArgument);
 
 	ptr_component->prb_component_node
@@ -96,11 +96,11 @@ void
 		return;
 
 	__synapse_component_interface_cleanup
-		(pProbe->prb_mman_interface,
+		(pProbe->prb_mman_probe,
 			pProbeInterface->prb_interface);
 	
-	pProbe->prb_mman_interface->deallocate
-		(pProbe->prb_mman_interface->hnd_mman,
+	pProbe->prb_mman_probe->deallocate
+		(pProbe->prb_mman_probe->hnd_mman,
 			pProbeInterface->prb_interface_mblock);
 }
 
@@ -121,12 +121,12 @@ void
 		->comp_interface->if_traits.cleanup
 			(pProbeComponent->prb_component->comp_interface_object);
 	
-	pProbe->prb_mman_component->deallocate
-		(pProbe->prb_mman_component->hnd_mman,
+	pProbe->prb_mman_probe->deallocate
+		(pProbe->prb_mman_probe->hnd_mman,
 			pProbeComponent->prb_component->comp_alloc_block);
 
-	pProbe->prb_mman_component->deallocate
-		(pProbe->prb_mman_component->hnd_mman,
+	pProbe->prb_mman_probe->deallocate
+		(pProbe->prb_mman_probe->hnd_mman,
 			pProbeComponent->prb_component_mblock);
 }
 

@@ -3,11 +3,11 @@
 
 __synapse_component_interface*
 	__synapse_component_interface_initialize
-		(synapse_memory_mman_traits* pMman, 
-		 synapse_component_metadata  pMetadata, 
-		 synapse_component_traits	 pTraits)
+		(synapse_memory_manager*    pMman,
+		 synapse_component_metadata pMetadata, 
+		 synapse_component_traits	pTraits)
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		hnd_block
 			= pMman->allocate
 					(pMman->hnd_mman, NULL, sizeof(__synapse_component_interface));
@@ -29,9 +29,9 @@ __synapse_component_interface*
 
 __synapse_component*
 	__synapse_component_initialize
-		(synapse_memory_mman_traits* pMman, __synapse_component_interface* pInterface, va_list pArgument)
+		(synapse_memory_manager* pMman, __synapse_component_interface* pInterface, va_list pArgument)
 {
-	synapse_memory_mman_block
+	synapse_memory_block
 		hnd_block
 			= pMman->allocate
 					(pMman->hnd_mman, NULL, sizeof(__synapse_component));
@@ -55,7 +55,7 @@ __synapse_component*
 
 void
 	__synapse_component_interface_cleanup
-		(synapse_memory_mman_traits* pMman, __synapse_component_interface* pInterface)
+		(synapse_memory_manager* pMman, __synapse_component_interface* pInterface)
 {
 	pMman->deallocate
 		(pMman->hnd_mman, pInterface->if_alloc_block);
@@ -63,7 +63,7 @@ void
 
 void
 	__synapse_component_cleanup
-		(synapse_memory_mman_traits* pMman, __synapse_component* pComponent)
+		(synapse_memory_manager* pMman, __synapse_component* pComponent)
 {
 	pMman->deallocate
 		(pMman->hnd_mman, pComponent->comp_alloc_block);
