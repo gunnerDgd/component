@@ -4,16 +4,6 @@
 
 synapse_component_dll
 	void
-		synapse_component_initialize_system
-			();
-
-synapse_component_dll
-	void
-		synapse_component_cleanup_system
-			();
-
-synapse_component_dll
-	void
 		synapse_export_interface
 			(synapse_component_metadata, synapse_component_traits);
 

@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\..\synapse\include\synapse\__internal\component\init.h" />
     <ClInclude Include="..\..\..\..\include\component\component.h" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +129,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalDependencies>synapse-structure-dlist.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\component\*.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\memory\synapse-memory-mman-dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>synapse-structure-dlist.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\component\*.lib;E:\Programming\C++\Projects\synapse\libs\x64\debug\dll_lib\synapse-memory-mman-dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

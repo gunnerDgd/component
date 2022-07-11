@@ -1,4 +1,5 @@
 #include <component/component.h>
+#include <synapse/__internal/component/init.h>
 
 #include <component/component_init.h>
 #include <component/component_manip.h>
@@ -21,11 +22,15 @@ synapse_component_dll
 		synapse_component_initialize_system
 			()
 {
-	__synapse_component_mman_probe
-		= synapse_initialize_standard_heap();
-	__synapse_component_probe
-		= synapse_component_probe_initialize
-				(__synapse_component_mman_probe);
+	if(!__synapse_component_mman_probe)
+		__synapse_component_mman_probe
+			= synapse_initialize_standard_heap();
+
+	if(!synapse_component_opaque_handle_reference
+			(__synapse_component_probe))
+				__synapse_component_probe
+					= synapse_component_probe_initialize
+						  (__synapse_component_mman_probe);
 }
 
 synapse_component_dll
@@ -33,10 +38,21 @@ synapse_component_dll
 		synapse_component_cleanup_system
 			()
 {
-	synapse_component_probe_cleanup
-		(__synapse_component_probe);
-	synapse_cleanup_standard_heap
-		(__synapse_component_mman_probe);
+	if(synapse_component_opaque_handle_reference
+			(__synapse_component_probe))
+				synapse_component_probe_cleanup
+					(__synapse_component_probe);
+
+	if(__synapse_component_mman_probe)
+		synapse_cleanup_standard_heap
+			(__synapse_component_mman_probe);
+
+	__synapse_component_mman_probe
+		= NULL;
+	synapse_component_opaque_handle_reference
+		(__synapse_component_probe)
+			= NULL;
+
 }
 
 synapse_component_dll
@@ -65,6 +81,15 @@ synapse_component_dll
 			(synapse_component_interface pInterface, const char* pName, int pArgCount, ...)
 {
 	va_list ptr_args;
+	if(!synapse_component_opaque_handle_reference
+			(pInterface)) {
+		synapse_component_opaque_handle_init
+			(synapse_component, hnd_error, 0);
+
+		return
+			hnd_error;
+	}
+
 	va_start
 		(ptr_args, pArgCount);
 
