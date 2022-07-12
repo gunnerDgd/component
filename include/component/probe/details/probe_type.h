@@ -3,6 +3,7 @@
 #include <synapse/memory/interface/memory_manager.h>
 
 #include <component/details/component_type.h>
+#include <Windows.h>
 
 typedef struct
 	__synapse_component_probe_component
@@ -43,4 +44,9 @@ typedef struct
 	synapse_structure_double_linked
 		 prb_component,
 		 prb_component_interface;
+
+	DWORD
+		 prb_thread_id;
+	HANDLE
+		 prb_thread_lock;
 } __synapse_component_probe;

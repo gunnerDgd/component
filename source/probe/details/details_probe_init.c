@@ -24,6 +24,11 @@ __synapse_component_probe*
 	ptr_probe->prb_component_interface
 		= synapse_structure_double_linked_initialize
 				(pMmanProbe);
+	
+	ptr_probe->prb_thread_id
+		= GetCurrentThreadId();
+	ptr_probe->prb_thread_lock
+		= CreateMutex(NULL, TRUE, NULL);
 
 	return
 		ptr_probe;
@@ -33,6 +38,10 @@ void
 	__synapse_component_probe_cleanup
 		(__synapse_component_probe* pProbe)
 {
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return;
+
 	synapse_structure_double_linked_cleanup
 		(pProbe->prb_component);
 	synapse_structure_double_linked_cleanup

@@ -1,4 +1,1 @@
-﻿  component.c
-  LINK : program database E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.pdb missing; performing full link
-     Creating library E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.lib and object E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.exp
-  synapse-component-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.dll
+﻿  synapse-component-dll.vcxproj -> E:\Programming\C++\Projects\synapse\bin\x64\debug\synapse-component-dll.dll

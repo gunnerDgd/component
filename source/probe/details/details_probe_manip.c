@@ -18,6 +18,9 @@ __synapse_component_probe_interface*
 	if(__synapse_component_probe_retrieve_interface
 			(pProbe, pMetadata.component_name)) 
 				return NULL;
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return NULL;
 
 	hnd_interface_mblock
 		= pProbe->prb_mman_probe->allocate
@@ -57,6 +60,9 @@ __synapse_component_probe_component*
 	if(__synapse_component_probe_retrieve_component
 			(pProbe, pComponentName))
 				return NULL;
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return NULL;
 
 	hnd_component_mblock
 		= pProbe->prb_mman_probe->allocate
@@ -94,6 +100,9 @@ void
 {
 	if (pProbeInterface->prb_interface_refcount)
 		return;
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return;
 
 	__synapse_component_interface_cleanup
 		(pProbe->prb_mman_probe,
@@ -113,6 +122,10 @@ void
 			(pProbeComponent);
 		return;
 	}
+
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return NULL;
 
 	synapse_structure_double_linked_erase_at
 		(pProbe->prb_component, pProbeComponent->prb_component_node);
@@ -135,9 +148,15 @@ __synapse_component_probe_interface*
 		(__synapse_component_probe* pProbe, const char* pName)
 {
 	synapse_structure_double_linked_node
-		ptr_seek
-			= synapse_structure_double_linked_node_begin
-					(pProbe->prb_component_interface);
+		ptr_seek;
+
+	if(GetCurrentThreadId()
+			!= pProbe->prb_thread_id)
+				return NULL;
+
+	ptr_seek
+		= synapse_structure_double_linked_node_begin
+				(pProbe->prb_component_interface);
 
 	for( ; ptr_seek.opaque
 		 ; ptr_seek = synapse_structure_double_linked_node_next
@@ -164,9 +183,14 @@ __synapse_component_probe_component*
 		(__synapse_component_probe* pProbe, const char* pName)
 {
 	synapse_structure_double_linked_node
-		ptr_seek
-			= synapse_structure_double_linked_node_begin
-					(pProbe->prb_component);
+		ptr_seek;
+
+	WaitForSingleObject
+		(pProbe->prb_thread_lock, INFINITE);
+
+	ptr_seek
+		= synapse_structure_double_linked_node_begin
+				(pProbe->prb_component);
 
 	for( ; ptr_seek.opaque
 		 ; ptr_seek = synapse_structure_double_linked_node_next
@@ -180,10 +204,15 @@ __synapse_component_probe_component*
 
 		if(strcmp
 				(ptr_component->prb_component->comp_name,
-						pName) == 0)
+						pName) == 0) {
+			ReleaseMutex
+				(pProbe->prb_thread_lock);
 			return
 				ptr_component;
+		}
 	}
 
+	ReleaseMutex
+		(pProbe->prb_thread_lock);
 	return NULL;
 }
