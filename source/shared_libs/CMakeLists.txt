@@ -28,3 +28,17 @@ target_link_libraries(
     synapse_component_dll
     synapse_component_lib
 )
+
+target_link_libraries(
+    synapse_component_dll
+    synapse_component_lib
+)
+
+target_link_libraries(
+    synapse_component_dll,
+    synapse_memory_dll
+)
+
+target_compile_options(
+    synapse_modules_dll PRIVATE /Dsynapse_component_export_mode
+)

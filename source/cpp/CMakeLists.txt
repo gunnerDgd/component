@@ -28,3 +28,8 @@ target_include_directories(
     PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
+
+target_link_libraries(
+    synapse_component_lib_cpp
+    synapse_component_dll
+)
