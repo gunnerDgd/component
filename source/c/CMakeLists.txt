@@ -15,7 +15,7 @@ file(
 add_library(
     synapse_component_lib
     STATIC
-    ${src_synapse_messaging_lib}
+    ${src_synapse_component_lib}
 )
 
 target_include_directories(
