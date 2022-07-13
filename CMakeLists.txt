@@ -30,3 +30,7 @@ target_link_libraries(
     synapse_component_lib_cpp
     synapse_component_dll
 )
+
+target_compile_options(
+    synapse_modules_dll PRIVATE /Dsynapse_component_export_mode
+)
