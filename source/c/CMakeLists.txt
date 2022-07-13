@@ -4,7 +4,7 @@ project(
     synapse-component-lib
     VERSION 0.1.0
     DESCRIPTION "Component Support Layer for Synapse Framework"
-    LANGUAGES C
+    LANGUAGES CXX
 )
 
 file(
