@@ -39,6 +39,11 @@ target_link_libraries(
     synapse_memory_dll
 )
 
+target_link_libraries(
+    synapse_component_dll
+    synapse_structure_dlist_lib
+)
+
 target_compile_options(
     synapse_component_dll PRIVATE /Dsynapse_component_export_mode
 )

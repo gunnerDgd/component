@@ -29,3 +29,9 @@ target_include_directories(
     PUBLIC
     ${CMAKE_SOURCE_DIR}/include
 )
+
+target_include_directories(
+    synapse_component_lib
+    PRIVATE
+    ${CMAKE_SOURCE_DIR}/submodules/synapse-structure/include
+)
