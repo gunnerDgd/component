@@ -1,32 +1,16 @@
 #pragma once
-#include <component/interface/component.h>
-#include <synapse/memory/interface/memory_manager.h>
-
-typedef struct
-	__synapse_component_interface
-{
-	synapse_memory_block
-		if_alloc_block;
-
-	synapse_component_metadata
-		if_metadata;
-	synapse_component_traits
-		if_traits;
-} __synapse_component_interface;
+#include <component/details/component_interface_type.h>
 
 typedef struct
 	__synapse_component
 {
 	synapse_memory_block
-		comp_alloc_block;
-
+		component_alloc_block;
 	__synapse_component_interface*
-		comp_interface;
-	const char*
-		comp_name;
-	size_t
-		comp_name_length;
+		component_interface;
 
+	const char*
+		component_name;
 	void*
-		comp_interface_object;
+		component_entity;
 } __synapse_component;

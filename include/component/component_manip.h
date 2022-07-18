@@ -10,9 +10,17 @@ uint64_t
 		(synapse_component);
 
 void*
-	synapse_component_retrieve_object
+	synapse_component_retrieve_entity
 		(synapse_component);
 
-synapse_component_metadata_type*
-	synapse_component_retrieve_type
-		(synapse_component_interface);
+synapse_component_interface_attribute
+	synapse_component_retrieve_attribute
+		(synapse_component, const char*);
+
+void*
+	synapse_component_retrieve_attribute_data
+		(synapse_component_interface_attribute);
+
+void*
+	synapse_component_retrieve_attribute_additional
+		(synapse_component_interface_attribute);

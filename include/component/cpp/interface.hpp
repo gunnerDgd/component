@@ -8,7 +8,7 @@ extern "C"
 #include <component/cpp/attribute.hpp>
 
 namespace synapse::component {
-	class meta_object
+	class interface
 	{
 		template <typename T>
 			friend class component;

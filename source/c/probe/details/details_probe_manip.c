@@ -2,13 +2,14 @@
 #include <component/probe/details/probe_reference.h>
 
 #include <component/details/component_init.h>
+#include <component/details/component_manip.h>
+
 #include <string.h>
 
 __synapse_component_probe_interface*
 	__synapse_component_probe_register_interface
 		(__synapse_component_probe* pProbe, 
-		 synapse_component_metadata pMetadata, 
-		 synapse_component_traits   pTraits)
+		 const char*				pInterfaceName)
 {
 	synapse_memory_block
 		hnd_interface_mblock;
@@ -16,7 +17,7 @@ __synapse_component_probe_interface*
 		ptr_interface;
 
 	if(__synapse_component_probe_retrieve_interface
-			(pProbe, pMetadata.component_name)) 
+			(pProbe, pInterfaceName)) 
 				return NULL;
 	if(GetCurrentThreadId()
 			!= pProbe->prb_thread_id)
@@ -33,9 +34,10 @@ __synapse_component_probe_interface*
 	
 	ptr_interface->prb_interface_mblock
 		= hnd_interface_mblock;
+
 	ptr_interface->prb_interface
 		= __synapse_component_interface_initialize
-				(pProbe->prb_mman_probe, pMetadata, pTraits);
+				(pProbe->prb_mman_probe, pInterfaceName);
 	ptr_interface->prb_interface_handle
 		= synapse_structure_double_linked_insert_back
 				(pProbe->prb_component_interface,
@@ -50,7 +52,7 @@ __synapse_component_probe_component*
 		(__synapse_component_probe*			  pProbe			 , 
 		 __synapse_component_probe_interface* pComponentInterface,
 		 const char*						  pComponentName     ,
-		 va_list							  pArgument)
+		 void*								  pArgument)
 {
 	synapse_memory_block
 		hnd_component_mblock;
@@ -77,7 +79,7 @@ __synapse_component_probe_component*
 		= hnd_component_mblock;
 	ptr_component->prb_component
 		= __synapse_component_initialize
-			(pProbe->prb_mman_probe,
+			(pProbe->prb_mman_probe, pComponentName,
 				pComponentInterface->prb_interface, pArgument);
 
 	ptr_component->prb_component_node
@@ -129,14 +131,13 @@ void
 
 	synapse_structure_double_linked_erase_at
 		(pProbe->prb_component, pProbeComponent->prb_component_node);
-
-	pProbeComponent->prb_component
-		->comp_interface->if_traits.cleanup
-			(pProbeComponent->prb_component->comp_interface_object);
+	__synapse_component_cleanup
+		(pProbe->prb_mman_probe, pProbeComponent->prb_component);
+	
 	
 	pProbe->prb_mman_probe->deallocate
 		(pProbe->prb_mman_probe->hnd_mman,
-			pProbeComponent->prb_component->comp_alloc_block);
+			pProbeComponent->prb_component->component_alloc_block);
 
 	pProbe->prb_mman_probe->deallocate
 		(pProbe->prb_mman_probe->hnd_mman,
@@ -169,7 +170,7 @@ __synapse_component_probe_interface*
 							(ptr_seek);
 
 		if(strcmp
-				(ptr_interface->prb_interface->if_metadata.component_name,
+				(ptr_interface->prb_interface->if_name,
 						pName) == 0)
 			return
 				ptr_interface;
@@ -203,7 +204,7 @@ __synapse_component_probe_component*
 							(ptr_seek);
 
 		if(strcmp
-				(ptr_component->prb_component->comp_name,
+				(ptr_component->prb_component->component_name,
 						pName) == 0) {
 			ReleaseMutex
 				(pProbe->prb_thread_lock);
@@ -215,4 +216,35 @@ __synapse_component_probe_component*
 	ReleaseMutex
 		(pProbe->prb_thread_lock);
 	return NULL;
+}
+
+
+void
+	__synapse_component_probe_add_attribute
+		(__synapse_component_probe*			  pProbe    ,
+		 __synapse_component_probe_interface* pInterface, 
+		 void*								  pAttribute, 
+		 const char*						  pAttributeName, 
+		 void*								  pAttributeAdditional)
+{
+	__synapse_component_interface_add_attribute
+		(pInterface->prb_interface, 
+			pAttributeName, pAttribute, pAttributeAdditional);
+}
+
+void
+	__synapse_component_probe_delete_attribute
+		(__synapse_component_probe_interface* pInterface, const char* pAttributeName)
+{
+	__synapse_component_interface_delete_attribute
+		(pInterface->prb_interface, pAttributeName);
+}
+
+__synapse_component_interface_attribute*
+	__synapse_component_probe_retrieve_attribute
+		(__synapse_component_probe_interface* pInterface, const char* pAttributeName)
+{
+	return
+		__synapse_component_interface_retreive_attribute
+			(pInterface->prb_interface, pAttributeName);
 }

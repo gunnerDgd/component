@@ -57,12 +57,11 @@ synapse_component_dll
 
 synapse_component_dll
 	void
-		synapse_export_interface
-			(synapse_component_metadata pMetadata, synapse_component_traits pTraits)
+		synapse_register_interface
+			(const char* pName)
 {
 	synapse_component_interface_initialize
-		(__synapse_component_probe,
-				pMetadata, pTraits);
+		(__synapse_component_probe, pName);
 }
 
 synapse_component_dll
@@ -78,9 +77,8 @@ synapse_component_dll
 synapse_component_dll
 	synapse_component
 		synapse_create_component
-			(synapse_component_interface pInterface, const char* pName, int pArgCount, ...)
+			(synapse_component_interface pInterface, const char* pName, void* pArgument)
 {
-	va_list ptr_args;
 	if(!synapse_component_opaque_handle_reference
 			(pInterface)) {
 		synapse_component_opaque_handle_init
@@ -90,12 +88,9 @@ synapse_component_dll
 			hnd_error;
 	}
 
-	va_start
-		(ptr_args, pArgCount);
-
 	return
-		synapse_component_initialize_from_vargs
-			(__synapse_component_probe, pInterface, pName, ptr_args);
+		synapse_component_initialize
+			(__synapse_component_probe, pInterface, pName, pArgument);
 }
 
 synapse_component_dll
@@ -151,7 +146,7 @@ synapse_component_dll
 
 synapse_component_dll
 	void*
-		synapse_retrieve_object
+		synapse_retrieve_component_entity
 			(synapse_component pComponent)
 {
 	if(!synapse_component_opaque_handle_reference
@@ -159,20 +154,36 @@ synapse_component_dll
 				return NULL;
 	else
 		return
-			synapse_component_retrieve_object
+			synapse_component_retrieve_entity
 				(pComponent);
 }
 
 synapse_component_dll
-	synapse_component_metadata_type*
-		synapse_retrieve_type
-			(synapse_component_interface pInterface)
+	synapse_component_interface_attribute
+		synapse_retrieve_component_attribute
+			(synapse_component pComponent, const char* pName)
 {
-	if(!synapse_component_opaque_handle_reference
-			(pInterface))
-				return NULL;
-	else
-		return
-			synapse_component_retrieve_type
-				(pInterface);
+	return
+		synapse_component_retrieve_attribute
+			(pComponent, pName);
+}
+
+synapse_component_dll
+	void*
+		synapse_retrieve_component_attribute_data
+			(synapse_component_interface_attribute pAttribute)
+{
+	return
+		synapse_component_retrieve_attribute_data
+			(pAttribute);
+}
+
+synapse_component_dll
+	void*
+		synapse_retrieve_component_attribute_additional
+			(synapse_component_interface_attribute pAttribute)
+{
+	return
+		synapse_component_retrieve_attribute_additional
+			(pAttribute);
 }

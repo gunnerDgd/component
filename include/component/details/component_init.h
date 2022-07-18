@@ -3,11 +3,11 @@
 
 __synapse_component_interface*
 	__synapse_component_interface_initialize
-		(synapse_memory_manager*, synapse_component_metadata, synapse_component_traits);
+		(synapse_memory_manager*, const char*);
 
 __synapse_component*
 	__synapse_component_initialize
-		(synapse_memory_manager*, __synapse_component_interface*, va_list);
+		(synapse_memory_manager*, const char*, __synapse_component_interface*, void*);
 
 void
 	__synapse_component_interface_cleanup

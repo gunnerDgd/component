@@ -34,8 +34,16 @@ target_link_libraries(
     synapse_component_dll
 )
 
-target_compile_options(
-  synapse_component_lib_cpp
-  PUBLIC
-  /std:c++17
-)
+if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(
+        synapse_component_lib_cpp
+        PUBLIC
+        /std:c++17
+    )
+elseif(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(
+        synapse_component_lib_cpp
+        PUBLIC
+        -std=c++17
+    )
+endif()
