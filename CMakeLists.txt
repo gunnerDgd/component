@@ -6,6 +6,16 @@ project(
     LANGUAGES C
 )
 
+option(SYNAPSE_COMPONENT_STANDALONE_BUILD OFF)
+
+if(SYNAPSE_COMPONENT_STANDALONE_BUILD)
+    set(synapse_component_include_path "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+    set(synapse_component_global_include_path "${CMAKE_CURRENT_SOURCE_DIR}/../../../..")
+else()
+    set(synapse_component_include_path "${CMAKE_CURRENT_SOURCE_DIR}/../..")
+    set(synapse_component_global_include_path "${CMAKE_SOURCE_DIR}/../../../..")
+endif()
+
 add_subdirectory(source/c)
 add_subdirectory(source/shared_libs)
 add_subdirectory(source/cpp)
