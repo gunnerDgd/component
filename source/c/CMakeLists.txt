@@ -21,17 +21,11 @@ add_library(
 target_include_directories(
     synapse_component_lib
     PUBLIC
-    ${synapse_component_include_path}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 target_include_directories(
     synapse_component_lib
     PUBLIC
-    ${synapse_component_global_include_path}/include
-)
-
-target_include_directories(
-    synapse_component_lib
-    PUBLIC
-    ${synapse_component_global_include_path}/submodules/synapse-structure/include
+    ${CMAKE_SOURCE_DIR}/include
 )

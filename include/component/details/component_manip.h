@@ -2,11 +2,12 @@
 
 void
     __synapse_component_interface_add_attribute
-        (synapse_memory_manager*, __synapse_component_interface*, const char*, void*, void*);
+        (__synapse_component_interface*,
+                const char*, void*, void*);
 
 void
     __synapse_component_interface_delete_attribute
-        (synapse_memory_manager*, __synapse_component_interface*, const char*);
+        (__synapse_component_interface*, const char*);
 
 __synapse_component_interface_attribute*
     __synapse_component_interface_retreive_attribute

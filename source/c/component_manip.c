@@ -38,16 +38,40 @@ void*
 				->prb_component->component_entity;
 }
 
+void
+	synapse_component_add_attribute
+		(synapse_component_interface pInterface, 
+		 const char*				 pAttributeName, 
+		 void*						 pAttributeData, 
+		 void*						 pAttributeAdditional)
+{
+	__synapse_component_interface_add_attribute
+		(synapse_component_opaque_handle_cast
+			(pInterface, __synapse_component_probe_interface*)
+				->prb_interface, pAttributeName, 
+					pAttributeData, pAttributeAdditional);
+}
+
+void
+	synapse_component_delete_attribute
+		(synapse_component_interface pInterface, const char* pName)
+{
+	__synapse_component_interface_delete_attribute
+		(synapse_component_opaque_handle_cast
+			(pInterface, __synapse_component_probe_interface*)
+				->prb_interface, pName);
+}
+
 synapse_component_interface_attribute
 	synapse_component_retrieve_attribute
-		(synapse_component pComponent, const char* pName)
+		(synapse_component_interface pInterface, const char* pName)
 {
 	synapse_component_opaque_handle_init
 		(synapse_component_interface_attribute, hnd_interface,
 			__synapse_component_interface_retreive_attribute
 				(synapse_component_opaque_handle_cast
-					(pComponent, __synapse_component_probe_component*)
-						->prb_component->component_interface, pName));
+					(pInterface, __synapse_component_probe_interface*)
+						->prb_interface, pName));
 
 	return
 		hnd_interface;

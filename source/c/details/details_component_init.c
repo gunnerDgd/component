@@ -1,6 +1,8 @@
 #include <component/details/component_init.h>
 #include <component/details/component_manip.h>
 
+#include <synapse/memory/memory.h>
+
 #include <Windows.h>
 
 __synapse_component_interface*
@@ -8,21 +10,15 @@ __synapse_component_interface*
 		(synapse_memory_manager* pMman,
 		 const char*			 pInterfaceName)
 {
-	synapse_memory_block
-		hnd_block
-			= pMman->allocate
-					(pMman->hnd_mman, NULL, sizeof(__synapse_component_interface));
 	__synapse_component_interface*
 		ptr_interface
-			= pMman->block_pointer
-					(hnd_block);
+			= synapse_system_allocate
+					(sizeof(__synapse_component_interface));
 
-	ptr_interface->if_alloc_block
-		= hnd_block;
 	ptr_interface->if_name
 		= pInterfaceName;
 	ptr_interface->if_attribute
-		= synapse_structure_double_linked_initialize
+		= synapse_initialize_double_linked
 			(pMman);
 
 	return
@@ -74,10 +70,10 @@ void
 	__synapse_component_interface_cleanup
 		(synapse_memory_manager* pMman, __synapse_component_interface* pInterface)
 {	
-	synapse_structure_double_linked_cleanup
+	synapse_cleanup_double_linked
 		(pInterface->if_attribute);
-	pMman->deallocate
-		(pMman->hnd_mman, pInterface->if_alloc_block);
+	synapse_system_deallocate
+		(pInterface);
 }
 
 void

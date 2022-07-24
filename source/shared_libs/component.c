@@ -8,7 +8,7 @@
 #include <component/probe/probe_manip.h>
 
 #include <synapse/memory/interface/memory_manager.h>
-#include <synapse/memory/standard_heap.h>
+#include <synapse/memory/memory.h>
 
 #include <stdarg.h>
 
@@ -24,7 +24,7 @@ synapse_component_dll
 {
 	if(!__synapse_component_mman_probe)
 		__synapse_component_mman_probe
-			= synapse_initialize_standard_heap();
+			= synapse_system_memory_manager();
 
 	if(!synapse_component_opaque_handle_reference
 			(__synapse_component_probe))
@@ -43,10 +43,6 @@ synapse_component_dll
 				synapse_component_probe_cleanup
 					(__synapse_component_probe);
 
-	if(__synapse_component_mman_probe)
-		synapse_cleanup_standard_heap
-			(__synapse_component_mman_probe);
-
 	__synapse_component_mman_probe
 		= NULL;
 	synapse_component_opaque_handle_reference
@@ -56,17 +52,30 @@ synapse_component_dll
 }
 
 synapse_component_dll
-	void
+	synapse_component_interface
 		synapse_register_interface
 			(const char* pName)
 {
-	synapse_component_interface_initialize
-		(__synapse_component_probe, pName);
+	return
+		synapse_component_interface_initialize
+			(__synapse_component_probe, pName);
+}
+
+synapse_component_dll
+	void
+		synapse_register_interface_attribute
+			(synapse_component_interface pInterface, 
+			 const char*				 pAttributeName, 
+			 void*						 pAttributeData, 
+			 void*						 pAttributeAdditonal)
+{
+	synapse_component_add_attribute
+		(pInterface, pAttributeName, pAttributeData, pAttributeAdditonal);
 }
 
 synapse_component_dll
 	synapse_component_interface
-		synapse_import_interface
+		synapse_retrieve_interface
 			(const char* pInterfaceName)
 {
 	return
@@ -160,8 +169,8 @@ synapse_component_dll
 
 synapse_component_dll
 	synapse_component_interface_attribute
-		synapse_retrieve_component_attribute
-			(synapse_component pComponent, const char* pName)
+		synapse_retrieve_interface_attribute
+			(synapse_component_interface pComponent, const char* pName)
 {
 	return
 		synapse_component_retrieve_attribute
@@ -170,7 +179,7 @@ synapse_component_dll
 
 synapse_component_dll
 	void*
-		synapse_retrieve_component_attribute_data
+		synapse_retrieve_interface_attribute_data
 			(synapse_component_interface_attribute pAttribute)
 {
 	return
@@ -180,7 +189,7 @@ synapse_component_dll
 
 synapse_component_dll
 	void*
-		synapse_retrieve_component_attribute_additional
+		synapse_retrieve_interface_attribute_additional
 			(synapse_component_interface_attribute pAttribute)
 {
 	return

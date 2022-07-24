@@ -13,9 +13,17 @@ void*
 	synapse_component_retrieve_entity
 		(synapse_component);
 
+void
+	synapse_component_add_attribute
+		(synapse_component_interface, const char*, void*, void*);
+
+void
+	synapse_component_delete_attribute
+		(synapse_component_interface, const char*);
+
 synapse_component_interface_attribute
 	synapse_component_retrieve_attribute
-		(synapse_component, const char*);
+		(synapse_component_interface, const char*);
 
 void*
 	synapse_component_retrieve_attribute_data

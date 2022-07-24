@@ -15,20 +15,20 @@ add_library(
 target_include_directories(
     synapse_component_dll
     PUBLIC
-    ${synapse_component_include_path}/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../include
 )
 
 target_include_directories(
     synapse_component_dll
     PUBLIC
-    ${synapse_component_global_include_path}/include
+    ${CMAKE_SOURCE_DIR}/include
 )
 
 target_link_libraries(
     synapse_component_dll
     synapse_component_lib
     synapse_memory_dll
-    synapse_structure_dlist_lib
+    synapse_structure_dll
 )
 
 target_compile_options(

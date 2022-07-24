@@ -2,7 +2,6 @@
 #include <component/interface/component.h>
 #include <component/probe/probe_type.h>
 
-
 synapse_component_interface
 	synapse_component_interface_initialize
 		(synapse_component_probe, const char*);
